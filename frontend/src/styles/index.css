@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CENTRALIZED DESIGN SYSTEM — PREMIUM DARK THEME
+   All colors stored as bare RGB channels so Tailwind's
+   opacity modifiers (bg-primary/20, text-ice/70, etc.) work.
+   Change ONLY these :root variables to re-theme everything.
+   ============================================================ */
+
+:root {
+  /* ── Backgrounds ── */
+  --color-background:       5 5 5;           /* #050505 */
+  --color-surface:          43 29 16;        /* #2B1D10 */
+
+  /* ── Brand ── */
+  --color-primary:          92 63 30;        /* #5C3F1E */
+  --color-primary-hover:    112 75 37;       /* #704B25 */
+  --color-accent:           233 226 208;     /* #E9E2D0 */
+
+  /* ── Text ── */
+  --color-foreground:       248 245 239;     /* #F8F5EF */
+  --color-text-secondary:   216 204 184;     /* #D8CCB8 */
+  --color-text-muted:       167 155 138;     /* #A79B8A */
+
+  /* ── Border (as RGB channels) ── */
+  --color-border-rgb:       233 226 208;     /* #E9E2D0 */
+
+  /* ── Solid border for glass / card backgrounds ── */
+  --color-border:           rgba(233, 226, 208, 0.08);
+
+  /* ── Card & Elevation ── */
+  --color-card:             30 20 12;        /* slightly lighter than background */
+  --color-card-elevated:    43 29 16;        /* surface color */
+  
+  /* ── Glass gradient ── */
+  --color-glass-gradient-start: rgba(255, 255, 255, 0.04);
+  --color-glass-gradient-end:   rgba(255, 255, 255, 0.01);
+
+  /* ── Shadows / Glows ── */
+  --color-shadow-soft:      rgba(0, 0, 0, 0.2);
+  --color-shadow-elevated:  rgba(0, 0, 0, 0.35);
+  --color-primary-glow:     rgba(92, 63, 30, 0.15); /* Reduced glow */
+
+  /* ── Status (semantic — never change these) ── */
+  --color-success:          #22c55e;
+  --color-warning:          #f59e0b;
+  --color-danger:           #ef4444;
+}
+
+/* ── Global base ── */
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen antialiased;
+  }
+
+  ::selection {
+    background: rgb(var(--color-primary) / 0.4);
+    color: #fff;
+  }
+
+  /* Scrollbar (Webkit) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--color-surface) / 0.5);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--color-primary) / 0.4);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--color-primary) / 0.7);
+  }
+}
+
+/* ── Utility overrides ── */
+@layer utilities {
+  /* Glass morphism card */
+  .glass {
+    background: var(--color-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 24px var(--color-shadow);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, rgb(var(--color-accent)), rgb(var(--color-primary)));
+  }
+}
+
+/* ── Typography & Components ── */
+@layer components {
+  /* Typography Hierarchy */
+  .text-page-title {
+    @apply text-2xl sm:text-3xl font-bold text-white tracking-tight;
+  }
+  .text-section-title {
+    @apply text-lg font-semibold text-foreground tracking-tight;
+  }
+  .text-card-title {
+    @apply text-sm font-bold text-foreground uppercase tracking-wider;
+  }
+  .text-label {
+    @apply text-xs font-semibold text-text-muted uppercase tracking-wider;
+  }
+  .text-caption {
+    @apply text-xs text-text-secondary;
+  }
+
+  /* Buttons */
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background;
+  }
+  
+  .btn-primary {
+    @apply btn-base bg-primary text-foreground hover:bg-primary-hover shadow-md hover:shadow-lg hover:-translate-y-0.5;
+    box-shadow: 0 2px 8px var(--color-primary-glow);
+  }
+
+  .btn-secondary {
+    @apply btn-base bg-surface border border-border text-foreground hover:bg-surface/80 hover:border-border/80 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-danger {
+    @apply btn-base bg-red-500/10 border border-red-500/20 text-red-500 hover:bg-red-500/20 hover:border-red-500/30 shadow-sm hover:shadow-md;
+  }
+
+  .btn-ghost {
+    @apply btn-base bg-transparent text-text-secondary hover:text-foreground hover:bg-surface border border-transparent;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-surface/50 border border-border rounded-xl px-4 py-2.5
+           text-foreground placeholder-text-muted text-sm
+           focus:outline-none focus:ring-2 focus:ring-primary/40
+           focus:border-primary/50 transition-all duration-200 shadow-inner;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-[rgb(var(--color-card))] border border-border rounded-2xl p-6 shadow-sm transition-all duration-200;
+  }
+  
+  .card-elevated {
+    @apply bg-surface border border-border rounded-2xl p-6 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:border-border/80;
+  }
+  
+  .card-glass {
+    @apply card backdrop-blur-xl relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(var(--color-surface), 0.7), rgba(var(--color-card), 0.9));
+  }
+  
+  .card-glass::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl pointer-events-none;
+    background: linear-gradient(to bottom right, var(--color-glass-gradient-start), var(--color-glass-gradient-end));
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border shadow-sm transition-all;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    @apply fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+    background: rgb(var(--color-background) / 0.85);
+  }
+
+  .modal-container {
+    @apply bg-surface border border-border rounded-2xl p-6 w-full shadow-2xl;
+    box-shadow: 0 10px 40px var(--color-shadow-elevated);
+  }
+}

@@ -100,12 +100,12 @@ const Dashboard = () => {
         <DashboardLayout>
 
             <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 flex items-center gap-2 flex-wrap">
                     Welcome back,{' '}
                     <span className={user?.usernameColor ? "font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 tracking-tight drop-shadow-sm" : ""}>
                         {user?.fullName || 'Coder'}
                     </span>! 
-                    <ProfileBadge badgeType={user?.profileBadge} className="w-6 h-6" />
+                    <ProfileBadge badgeType={user?.profileBadge} className="w-6 h-6 shrink-0" />
                     👋
                 </h2>
                 <p className="text-ice/70">Here's a summary of your coding progress.</p>

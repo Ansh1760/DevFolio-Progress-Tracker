@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }) => {
             
             <div className="flex-1 w-full md:ml-72 min-w-0 flex flex-col transition-all duration-300">
                 <Topbar toggleSidebar={toggleSidebar} />
-                <main className="p-4 md:p-6 lg:p-8 w-full max-w-full overflow-x-hidden">
+                <main className="px-3 py-4 sm:p-4 md:p-6 lg:p-8 w-full max-w-full overflow-x-hidden">
                     <div className="max-w-7xl mx-auto w-full">
                         {children}
                     </div>

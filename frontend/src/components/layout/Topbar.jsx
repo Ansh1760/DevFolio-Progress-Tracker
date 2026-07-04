@@ -125,7 +125,7 @@ const Topbar = ({ toggleSidebar }) => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute right-0 mt-3 w-80 bg-surface border border-border rounded-2xl shadow-xl overflow-hidden z-50 origin-top-right"
+                                className="absolute right-0 mt-3 w-[calc(100vw-2rem)] sm:w-80 max-w-[320px] bg-surface border border-border rounded-2xl shadow-xl overflow-hidden z-50 origin-top-right"
                             >
                                 <div className="p-4 border-b border-border flex items-center justify-between bg-surface/50">
                                     <h3 className="font-bold text-foreground">Notifications</h3>

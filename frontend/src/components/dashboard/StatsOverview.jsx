@@ -42,7 +42,7 @@ const StatsOverview = ({ stats }) => {
     ];
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
             {cards.map((card, index) => {
                 const Icon = card.icon;
                 return (
@@ -51,18 +51,18 @@ const StatsOverview = ({ stats }) => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className={`card border ${card.border} hover:-translate-y-0.5 hover:shadow-lg transition-all cursor-pointer group`}
+                        className={`card border ${card.border} hover:-translate-y-0.5 hover:shadow-lg transition-all cursor-pointer group p-4 sm:p-6`}
                     >
-                        <div className="flex justify-between items-start mb-4">
+                        <div className="flex justify-between items-start mb-3 sm:mb-4">
                             <div>
-                                <p className="text-label mb-1">{card.title}</p>
-                                <h3 className="text-3xl font-bold text-foreground">{card.value}</h3>
+                                <p className="text-label mb-0.5 sm:mb-1">{card.title}</p>
+                                <h3 className="text-2xl sm:text-3xl font-bold text-foreground">{card.value}</h3>
                             </div>
-                            <div className={`p-3 rounded-xl ${card.bg} ${card.color} border border-transparent group-hover:border-current group-hover:scale-110 transition-all shadow-sm`}>
-                                <Icon className="w-5 h-5" />
+                            <div className={`p-2 sm:p-3 rounded-xl ${card.bg} ${card.color} border border-transparent group-hover:border-current group-hover:scale-110 transition-all shadow-sm`}>
+                                <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
                             </div>
                         </div>
-                        <p className="text-caption">{card.subtitle}</p>
+                        <p className="text-caption text-xs">{card.subtitle}</p>
                     </motion.div>
                 );
             })}

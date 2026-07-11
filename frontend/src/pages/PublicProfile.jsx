@@ -147,9 +147,9 @@ const PublicProfile = () => {
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
-                <div className="flex flex-col md:flex-row gap-8 items-start md:items-center relative z-10">
+                <div className="flex flex-col sm:flex-row gap-5 sm:gap-8 items-center sm:items-start relative z-10">
                     <div className="relative flex-shrink-0">
-                        <div className={`w-28 h-28 rounded-2xl relative ${profile.profileBorder ? 'p-[4px]' : 'overflow-hidden border border-border shadow-md bg-surface'}`}>
+                        <div className={`w-24 h-24 sm:w-28 sm:h-28 rounded-2xl relative ${profile.profileBorder ? 'p-[4px]' : 'overflow-hidden border border-border shadow-md bg-surface'}`}>
                             {profile.profileBorder && (
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 rounded-2xl animate-pulse" />
                             )}
@@ -166,35 +166,35 @@ const PublicProfile = () => {
                         )}
                     </div>
 
-                    <div className="flex-1 w-full">
-                        <div className="flex flex-col md:flex-row md:justify-between items-start mb-4 gap-4">
-                            <div className="flex items-center gap-3">
+                    <div className="flex-1 w-full text-center sm:text-left">
+                        <div className="flex flex-col sm:flex-row sm:justify-between items-center sm:items-start mb-3 sm:mb-4 gap-3 sm:gap-4">
+                            <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center sm:justify-start">
                                 <h1 className={`text-page-title mb-1 ${profile.usernameColor ? "font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 tracking-tight drop-shadow-sm" : ""}`}>
                                     {profile.fullName || 'Anonymous Coder'}
                                 </h1>
-                                <ProfileBadge badgeType={profile.profileBadge} className="w-8 h-8" />
+                                <ProfileBadge badgeType={profile.profileBadge} className="w-7 h-7 sm:w-8 sm:h-8" />
                             </div>
                             
                             {/* Star Button */}
-                            <div className="flex flex-col items-end gap-1">
+                            <div className="flex flex-col items-center sm:items-end gap-1">
                                 <button 
                                     onClick={handleToggleStar}
                                     disabled={!currentUser || currentUser._id === id || isStarring}
-                                    className={`relative flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(234,179,8,0.2)] hover:shadow-[0_0_25px_rgba(234,179,8,0.4)] ${
+                                    className={`relative flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(234,179,8,0.2)] hover:shadow-[0_0_25px_rgba(234,179,8,0.4)] ${
                                         starData.hasStarred 
                                             ? 'bg-yellow-500/20 text-yellow-500 border border-yellow-500/50' 
                                             : 'bg-primary border border-yellow-500/30 text-white hover:text-yellow-300 hover:-translate-y-1'
                                     }`}
                                 >
-                                    <Star className={`w-5 h-5 ${starData.hasStarred ? 'fill-yellow-500' : ''}`} />
-                                    <span className="text-lg">{starData.count} {starData.count === 1 ? 'Star' : 'Stars'}</span>
+                                    <Star className={`w-4 h-4 sm:w-5 sm:h-5 ${starData.hasStarred ? 'fill-yellow-500' : ''}`} />
+                                    <span className="text-sm sm:text-lg">{starData.count} {starData.count === 1 ? 'Star' : 'Stars'}</span>
                                 </button>
                                 {!starData.hasStarred && currentUser && currentUser._id !== id && (
                                     <span className="text-xs text-yellow-400/80 font-medium animate-pulse">✨ Give them a star!</span>
                                 )}
                             </div>
                         </div>
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-text-secondary mb-3 mt-2">
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm text-text-secondary mb-3 mt-2 justify-center sm:justify-start">
                             {profile.collegeName && (
                                 <div className="flex items-center gap-1.5">
                                     <GraduationCap className="w-4 h-4 text-text-muted" />
@@ -210,11 +210,11 @@ const PublicProfile = () => {
                             )}
                         </div>
                         {profile.bio && (
-                            <p className="text-text-muted italic mb-4">"{profile.bio}"</p>
+                            <p className="text-text-muted italic mb-3 sm:mb-4 text-sm">"{profile.bio}"</p>
                         )}
 
                         {/* External links */}
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-start">
                             {profile.githubUsername && (
                                 <a
                                     href={`https://github.com/${profile.githubUsername}`}
@@ -250,7 +250,7 @@ const PublicProfile = () => {
                 </div>
 
                 {/* Stats bar */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 pt-8 border-t border-border relative z-10">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border relative z-10">
                     <StatBadge label="Total Solved" value={totalSolved} icon={Code2} color="text-sky" />
                     <StatBadge label="Current Streak" value={`${profile.streak} days`} icon={Flame} color="text-orange-400" />
                     <StatBadge label="Longest Streak" value={`${profile.longestStreak} days`} icon={Trophy} color="text-yellow-400" />

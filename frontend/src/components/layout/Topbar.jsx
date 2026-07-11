@@ -76,45 +76,52 @@ const Topbar = ({ toggleSidebar }) => {
     };
 
     return (
-        <header className="h-20 bg-background/80 backdrop-blur-xl border-b border-border sticky top-0 z-20 px-4 md:px-6 lg:px-8 flex items-center justify-between w-full shadow-sm">
-            <div className="flex items-center gap-4 flex-1">
-                <button className="md:hidden text-text-secondary hover:text-foreground transition-colors" onClick={toggleSidebar}>
+        <header className="h-16 md:h-20 bg-background/80 backdrop-blur-xl border-b border-border sticky top-0 z-20 px-3 md:px-6 lg:px-8 flex items-center justify-between w-full shadow-sm">
+            <div className="flex items-center gap-2 md:gap-4 flex-1 min-w-0">
+                <button className="md:hidden flex-shrink-0 text-text-secondary hover:text-foreground transition-colors p-1" onClick={toggleSidebar}>
                     <Menu className="w-6 h-6" />
                 </button>
-                <div className="hidden sm:block flex-1 max-w-xl relative">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Search className="h-4 w-4 text-text-muted" />
+                {/* Mobile: show DevFolio brand in topbar */}
+                <div className="flex md:hidden items-center gap-2 flex-shrink-0">
+                    <div className="w-7 h-7 bg-primary/20 border border-primary/40 rounded-lg flex items-center justify-center">
+                        <span className="text-primary font-bold text-sm">D</span>
+                    </div>
+                    <span className="text-sm font-bold text-foreground">DevFolio</span>
                 </div>
-                <input 
-                    type="text" 
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyDown={handleSearch}
-                    className="block w-full pl-11 pr-4 py-2.5 border border-border/60 rounded-xl leading-5 bg-surface/40 text-foreground placeholder-text-muted focus:outline-none focus:bg-surface focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all sm:text-sm shadow-inner" 
-                    placeholder="Search for problems, users, or topics (Press Enter)..." 
-                />
+                <div className="hidden sm:block flex-1 max-w-xl relative">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <Search className="h-4 w-4 text-text-muted" />
+                    </div>
+                    <input 
+                        type="text" 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={handleSearch}
+                        className="block w-full pl-11 pr-4 py-2.5 border border-border/60 rounded-xl leading-5 bg-surface/40 text-foreground placeholder-text-muted focus:outline-none focus:bg-surface focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all sm:text-sm shadow-inner" 
+                        placeholder="Search users, topics (Press Enter)..." 
+                    />
                 </div>
             </div>
 
-            <div className="flex items-center gap-3 ml-auto">
-                <div className="hidden sm:flex items-center gap-2.5 bg-surface/60 px-4 py-2 rounded-xl border border-border hover:border-border/80 transition-colors cursor-default shadow-sm">
+            <div className="flex items-center gap-1.5 md:gap-3 ml-2 flex-shrink-0">
+                <div className="hidden sm:flex items-center gap-2 md:gap-2.5 bg-surface/60 px-2.5 md:px-4 py-1.5 md:py-2 rounded-xl border border-border hover:border-border/80 transition-colors cursor-default shadow-sm">
                     <div className="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.6)] animate-pulse" />
-                    <span className="text-sm font-semibold text-foreground">{user?.streak || 0} Day Streak</span>
+                    <span className="text-xs md:text-sm font-semibold text-foreground">{user?.streak || 0}🔥</span>
                 </div>
                 
-                <div className="flex items-center gap-2.5 bg-surface/60 px-4 py-2 rounded-xl border border-border hover:border-border/80 transition-colors cursor-default shadow-sm">
-                    <span className="text-yellow-500 font-bold text-base leading-none">🪙</span>
-                    <span className="text-sm font-bold text-foreground">{user?.coins || 0}</span>
+                <div className="flex items-center gap-1 md:gap-2.5 bg-surface/60 px-2.5 md:px-4 py-1.5 md:py-2 rounded-xl border border-border hover:border-border/80 transition-colors cursor-default shadow-sm">
+                    <span className="text-yellow-500 font-bold text-sm md:text-base leading-none">🪙</span>
+                    <span className="text-xs md:text-sm font-bold text-foreground">{user?.coins || 0}</span>
                 </div>
 
                 <div className="relative" ref={notifRef}>
                     <button 
                         onClick={handleOpenNotifs}
-                        className="relative p-2.5 text-text-secondary hover:text-foreground hover:bg-surface/50 rounded-xl transition-colors focus:outline-none"
+                        className="relative p-2 md:p-2.5 text-text-secondary hover:text-foreground hover:bg-surface/50 rounded-xl transition-colors focus:outline-none"
                     >
-                        <Bell className="w-5 h-5" />
+                        <Bell className="w-4 h-4 md:w-5 md:h-5" />
                         {unreadCount > 0 && (
-                            <span className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border border-background animate-pulse"></span>
+                            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full border border-background animate-pulse"></span>
                         )}
                     </button>
                     
@@ -125,15 +132,21 @@ const Topbar = ({ toggleSidebar }) => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute right-0 mt-3 w-[calc(100vw-2rem)] sm:w-80 max-w-[320px] bg-surface border border-border rounded-2xl shadow-xl overflow-hidden z-50 origin-top-right"
+                                className="absolute right-0 mt-3 w-[calc(100vw-1rem)] sm:w-80 max-w-[340px] bg-surface border border-border rounded-2xl shadow-xl overflow-hidden z-50 origin-top-right"
+                                style={{ maxHeight: 'calc(100vh - 120px)' }}
                             >
                                 <div className="p-4 border-b border-border flex items-center justify-between bg-surface/50">
                                     <h3 className="font-bold text-foreground">Notifications</h3>
-                                    {unreadCount > 0 && (
-                                        <span className="text-xs font-semibold bg-primary text-foreground px-2.5 py-0.5 rounded-full">{unreadCount} New</span>
-                                    )}
+                                    <div className="flex items-center gap-2">
+                                        {unreadCount > 0 && (
+                                            <span className="text-xs font-semibold bg-primary text-foreground px-2.5 py-0.5 rounded-full">{unreadCount} New</span>
+                                        )}
+                                        <button onClick={() => setShowNotifs(false)} className="p-1 text-text-muted hover:text-foreground rounded-lg transition-colors">
+                                            <X className="w-4 h-4" />
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="max-h-[350px] overflow-y-auto scrollbar-hide">
+                                <div className="max-h-[60vh] overflow-y-auto scrollbar-hide">
                                     {notifications.length === 0 ? (
                                         <div className="p-8 text-center text-text-muted text-sm flex flex-col items-center gap-2">
                                             <Bell className="w-8 h-8 opacity-20" />
@@ -165,7 +178,7 @@ const Topbar = ({ toggleSidebar }) => {
 
                 <div className="relative">
                     <div 
-                        className={`h-10 w-10 relative cursor-pointer z-10 transition-colors shadow-sm ${user?.profileBorder ? 'p-[2px]' : 'rounded-xl border border-border hover:border-primary/50 overflow-hidden'}`}
+                        className={`h-8 w-8 md:h-10 md:w-10 relative cursor-pointer z-10 transition-colors shadow-sm flex-shrink-0 ${user?.profileBorder ? 'p-[2px]' : 'rounded-xl border border-border hover:border-primary/50 overflow-hidden'}`}
                         onClick={() => navigate('/profile')}
                     >
                         {user?.profileBorder && (

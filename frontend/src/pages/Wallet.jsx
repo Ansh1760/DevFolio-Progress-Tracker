@@ -61,9 +61,9 @@ const Wallet = () => {
 
     return (
         <DashboardLayout>
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2">Wallet & Rewards 💳</h2>
-                <p className="text-ice/70">Manage your DevFolio coins and redeem exciting rewards.</p>
+            <div className="mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-1">Wallet & Rewards 💳</h2>
+                <p className="text-ice/70 text-sm">Manage your DevFolio coins and redeem exciting rewards.</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
@@ -71,33 +71,33 @@ const Wallet = () => {
                 <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="glass rounded-3xl p-8 border border-yellow-400/20 bg-gradient-to-br from-navy-dark via-navy-light to-navy-dark relative overflow-hidden shadow-2xl shadow-yellow-400/5 lg:col-span-2"
+                    className="glass rounded-3xl p-5 sm:p-8 border border-yellow-400/20 bg-gradient-to-br from-navy-dark via-navy-light to-navy-dark relative overflow-hidden shadow-2xl shadow-yellow-400/5 lg:col-span-2"
                 >
                     <div className="absolute top-[-20%] right-[-10%] w-[50%] h-[150%] bg-yellow-400/5 blur-[80px] rounded-full rotate-45 pointer-events-none" />
                     
-                    <div className="flex justify-between items-start mb-12">
+                    <div className="flex justify-between items-start mb-8 sm:mb-12">
                         <div>
-                            <p className="text-ice/70 text-sm font-medium mb-2 uppercase tracking-wider">Total Balance</p>
-                            <h3 className="text-5xl font-bold text-white flex items-center gap-3">
+                            <p className="text-ice/70 text-xs sm:text-sm font-medium mb-1 sm:mb-2 uppercase tracking-wider">Total Balance</p>
+                            <h3 className="text-3xl sm:text-5xl font-bold text-white flex items-center gap-2 sm:gap-3">
                                 <span className="text-yellow-400">🪙</span>
                                 {user?.coins || 0}
                             </h3>
                         </div>
-                        <div className="bg-yellow-400/10 text-yellow-400 p-3 rounded-2xl cursor-pointer hover:bg-yellow-400/20 transition-colors" onClick={handleDailyLoginReward} title="Claim Daily Reward">
-                            <Coins className="w-8 h-8" />
+                        <div className="bg-yellow-400/10 text-yellow-400 p-2.5 sm:p-3 rounded-2xl cursor-pointer hover:bg-yellow-400/20 transition-colors" onClick={handleDailyLoginReward} title="Claim Daily Reward">
+                            <Coins className="w-6 h-6 sm:w-8 sm:h-8" />
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-navy-dark/50 rounded-xl p-4 border border-border/50">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                        <div className="bg-navy-dark/50 rounded-xl p-3 sm:p-4 border border-border/50">
                             <p className="text-ice/50 text-xs mb-1">Earned Today</p>
-                            <p className="text-green-400 font-bold text-lg flex items-center gap-1">
+                            <p className="text-green-400 font-bold text-base sm:text-lg flex items-center gap-1">
                                 +{balanceStats.earnedToday} <ArrowUpRight className="w-4 h-4" />
                             </p>
                         </div>
-                        <div className="bg-navy-dark/50 rounded-xl p-4 border border-border/50">
+                        <div className="bg-navy-dark/50 rounded-xl p-3 sm:p-4 border border-border/50">
                             <p className="text-ice/50 text-xs mb-1">Earned This Week</p>
-                            <p className="text-green-400 font-bold text-lg flex items-center gap-1">
+                            <p className="text-green-400 font-bold text-base sm:text-lg flex items-center gap-1">
                                 +{balanceStats.earnedThisWeek} <ArrowUpRight className="w-4 h-4" />
                             </p>
                         </div>
@@ -141,17 +141,17 @@ const Wallet = () => {
                     ) : transactions.length === 0 ? (
                         <div className="p-6 text-center text-ice/60">No transactions found.</div>
                     ) : transactions.map((tx) => (
-                        <div key={tx._id} className="p-6 flex items-center justify-between hover:bg-navy-light/30 transition-colors">
-                            <div className="flex items-center gap-4">
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${tx.type === 'earned' ? 'bg-green-400/10 text-green-400' : 'bg-red-400/10 text-red-400'}`}>
-                                    {tx.type === 'earned' ? <ArrowDownRight className="w-5 h-5" /> : <ArrowUpRight className="w-5 h-5" />}
+                        <div key={tx._id} className="p-4 sm:p-6 flex items-center justify-between hover:bg-navy-light/30 transition-colors gap-3">
+                            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                                <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center flex-shrink-0 ${tx.type === 'earned' ? 'bg-green-400/10 text-green-400' : 'bg-red-400/10 text-red-400'}`}>
+                                    {tx.type === 'earned' ? <ArrowDownRight className="w-4 h-4 sm:w-5 sm:h-5" /> : <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />}
                                 </div>
-                                <div>
-                                    <p className="text-white font-medium">{tx.reason}</p>
-                                    <p className="text-xs text-ice/50">{new Date(tx.date).toLocaleString()} • {tx.platform}</p>
+                                <div className="min-w-0">
+                                    <p className="text-white font-medium text-sm sm:text-base truncate">{tx.reason}</p>
+                                    <p className="text-xs text-ice/50 truncate">{new Date(tx.date).toLocaleString()} • {tx.platform}</p>
                                 </div>
                             </div>
-                            <div className={`font-bold ${tx.type === 'earned' ? 'text-green-400' : 'text-red-400'}`}>
+                            <div className={`font-bold text-sm sm:text-base flex-shrink-0 ${tx.type === 'earned' ? 'text-green-400' : 'text-red-400'}`}>
                                 {tx.type === 'earned' ? '+' : '-'}{tx.amount} 🪙
                             </div>
                         </div>

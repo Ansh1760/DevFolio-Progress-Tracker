@@ -126,7 +126,36 @@ function App() {
     <AuthProvider>
       <Router>
         <SSEListener />
-        <Toaster />
+        <Toaster
+          position="top-right"
+          containerStyle={{
+            top: 72, // below the sticky topbar (64px mobile / 80px desktop)
+            right: 16,
+            left: 16,
+            zIndex: 9999,
+          }}
+          toastOptions={{
+            duration: 6000,
+            style: {
+              background: '#2B1D10',
+              color: '#F8F5EF',
+              border: '1px solid rgba(233, 226, 208, 0.15)',
+              borderRadius: '14px',
+              padding: '14px 16px',
+              fontSize: '14px',
+              lineHeight: '1.45',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
+              backdropFilter: 'blur(16px)',
+              maxWidth: 'calc(100vw - 32px)',
+            },
+            success: {
+              iconTheme: { primary: '#22c55e', secondary: '#2B1D10' },
+            },
+            error: {
+              iconTheme: { primary: '#ef4444', secondary: '#2B1D10' },
+            },
+          }}
+        />
         <Routes>
           {/* Root: smart redirect based on auth state */}
           <Route path="/" element={<RootRoute />} />

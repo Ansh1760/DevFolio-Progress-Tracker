@@ -146,13 +146,13 @@
            focus:border-primary/50 transition-all duration-200 shadow-inner;
   }
 
-  /* Cards */
+  /* Mobile-friendly card */
   .card {
-    @apply bg-[rgb(var(--color-card))] border border-border rounded-2xl p-6 shadow-sm transition-all duration-200;
+    @apply bg-[rgb(var(--color-card))] border border-border rounded-2xl p-4 sm:p-6 shadow-sm transition-all duration-200;
   }
-  
+
   .card-elevated {
-    @apply bg-surface border border-border rounded-2xl p-6 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:border-border/80;
+    @apply bg-surface border border-border rounded-2xl p-4 sm:p-6 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:border-border/80;
   }
   
   .card-glass {
@@ -171,14 +171,74 @@
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border shadow-sm transition-all;
   }
 
-  /* Modals */
   .modal-overlay {
-    @apply fixed inset-0 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+    @apply fixed inset-0 backdrop-blur-sm z-50 flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto;
     background: rgb(var(--color-background) / 0.85);
   }
 
   .modal-container {
-    @apply bg-surface border border-border rounded-2xl p-6 w-full shadow-2xl;
+    @apply bg-surface border border-border rounded-2xl p-4 sm:p-6 w-full shadow-2xl my-auto;
     box-shadow: 0 10px 40px var(--color-shadow-elevated);
+  }
+}
+
+/* ── Mobile Utilities ── */
+@layer utilities {
+  /* Hide scrollbars for mobile swipe areas */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Smooth momentum scrolling on iOS */
+  .scroll-smooth-touch {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Safe area insets for iPhone notch/home bar */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Prevent overscroll bounce on mobile */
+  .overscroll-none {
+    overscroll-behavior: none;
+  }
+
+  /* Better tap target size on mobile */
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ── Mobile global tweaks ── */
+@media (max-width: 640px) {
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Smoother momentum scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Active state touch feedback */
+  .card, .glass, .card-elevated, .card-glass, .btn-primary, .btn-secondary {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.05);
+  }
+
+  button:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
   }
 }

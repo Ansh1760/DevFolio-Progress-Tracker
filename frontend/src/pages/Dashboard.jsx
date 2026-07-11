@@ -56,19 +56,24 @@ const Dashboard = () => {
                 if (lastSeen !== latest._id) {
                     import('react-hot-toast').then(({ default: toast }) => {
                         toast(
-                            <div className="flex flex-col gap-1">
-                                <span className="font-bold text-md">{latest.title}</span>
-                                <span className="text-sm opacity-90">{latest.message}</span>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                <span style={{ fontWeight: 700, fontSize: '14px', lineHeight: '1.3' }}>🔔 {latest.title}</span>
+                                <span style={{ fontSize: '13px', opacity: 0.85, lineHeight: '1.4' }}>{latest.message}</span>
                             </div>,
                             {
                                 duration: 8000,
-                                position: 'top-right',
+                                position: window.innerWidth < 640 ? 'top-center' : 'top-right',
                                 style: {
                                     background: '#2B1D10',
-                                    color: '#fff',
-                                    border: '1px solid rgba(233, 226, 208, 0.2)'
+                                    color: '#F8F5EF',
+                                    border: '1px solid rgba(233, 226, 208, 0.2)',
+                                    borderRadius: '14px',
+                                    padding: '14px 16px',
+                                    boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+                                    maxWidth: window.innerWidth < 640 ? 'calc(100vw - 32px)' : '360px',
+                                    width: '100%',
+                                    backdropFilter: 'blur(16px)',
                                 },
-                                icon: '🔔',
                             }
                         );
                     });
@@ -99,8 +104,8 @@ const Dashboard = () => {
     return (
         <DashboardLayout>
 
-            <div className="mb-8">
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 flex items-center gap-2 flex-wrap">
+            <div className="mb-5 sm:mb-8">
+                <h2 className="text-lg sm:text-2xl font-bold text-white mb-1 sm:mb-2 flex items-center gap-2 flex-wrap">
                     Welcome back,{' '}
                     <span className={user?.usernameColor ? "font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 tracking-tight drop-shadow-sm" : ""}>
                         {user?.fullName || 'Coder'}
@@ -108,7 +113,7 @@ const Dashboard = () => {
                     <ProfileBadge badgeType={user?.profileBadge} className="w-6 h-6 shrink-0" />
                     👋
                 </h2>
-                <p className="text-ice/70">Here's a summary of your coding progress.</p>
+                <p className="text-ice/70 text-sm">Here's a summary of your coding progress.</p>
             </div>
 
             <StatsOverview stats={{

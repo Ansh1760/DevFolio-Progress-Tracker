@@ -12,38 +12,35 @@ const UserCard = ({ user, onClick }) => (
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         onClick={() => onClick(user.id)}
-        className="glass border border-border hover:border-sky/40 rounded-2xl p-5 flex items-center gap-5 cursor-pointer group transition-all hover:bg-navy-light/30"
+        className="glass border border-border hover:border-sky/40 rounded-2xl p-4 sm:p-5 flex items-center gap-3 sm:gap-5 cursor-pointer group transition-all hover:bg-navy-light/30"
     >
         <img
             src={user.avatar}
             alt={user.name}
-            className="w-14 h-14 rounded-full object-cover border-2 border-border group-hover:border-sky/50 transition-colors flex-shrink-0"
+            className="w-11 h-11 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-border group-hover:border-sky/50 transition-colors flex-shrink-0"
         />
         <div className="flex-1 min-w-0">
-            <h3 className="text-white font-bold text-base truncate group-hover:text-sky transition-colors flex items-center gap-2">
+            <h3 className="text-white font-bold text-sm sm:text-base truncate group-hover:text-sky transition-colors flex items-center gap-1.5 sm:gap-2">
                 {user.name}
-                <ProfileBadge badgeType={user.profileBadge} className="w-4 h-4" />
+                <ProfileBadge badgeType={user.profileBadge} className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
             </h3>
-            <div className="flex items-center gap-2 text-ice/60 text-sm mt-0.5">
-                <GraduationCap className="w-3.5 h-3.5 flex-shrink-0" />
+            <div className="flex items-center gap-1.5 sm:gap-2 text-ice/60 text-xs sm:text-sm mt-0.5 min-w-0">
+                <GraduationCap className="w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0" />
                 <span className="truncate">{user.college || 'Unknown College'}</span>
-                {user.branch && <span className="text-ice/30">·</span>}
-                {user.branch && <span className="truncate">{user.branch}</span>}
             </div>
         </div>
-        <div className="flex items-center gap-5 text-sm flex-shrink-0">
+        <div className="flex items-center gap-2 sm:gap-5 text-sm flex-shrink-0">
             {user.leetcodeUsername && (
-                <div className="flex items-center gap-1.5 text-orange-400">
-                    <Code2 className="w-4 h-4" />
-                    <span className="font-medium">{user.totalSolved || 0}</span>
-                    <span className="text-ice/40 text-xs hidden sm:block">solved</span>
+                <div className="flex items-center gap-1 text-orange-400">
+                    <Code2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="font-medium text-xs sm:text-sm">{user.totalSolved || 0}</span>
                 </div>
             )}
-            <div className="flex items-center gap-1.5 text-orange-500">
-                <Flame className="w-4 h-4" />
-                <span className="font-medium">{user.streak}</span>
+            <div className="flex items-center gap-1 text-orange-500">
+                <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span className="font-medium text-xs sm:text-sm">{user.streak}</span>
             </div>
-            <div className="text-sky font-bold group-hover:translate-x-1 transition-transform">→</div>
+            <div className="text-sky font-bold group-hover:translate-x-1 transition-transform text-sm">→</div>
         </div>
     </motion.div>
 );

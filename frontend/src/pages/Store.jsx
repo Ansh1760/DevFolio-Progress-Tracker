@@ -270,17 +270,17 @@ const Store = () => {
     return (
         <DashboardLayout>
             {/* Header */}
-            <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="mb-6 sm:mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                    <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-                        <StoreIcon className="w-8 h-8 text-sky" /> Reward Store
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2 flex items-center gap-2 sm:gap-3">
+                        <StoreIcon className="w-6 h-6 sm:w-8 sm:h-8 text-sky flex-shrink-0" /> Reward Store
                     </h2>
-                    <p className="text-ice/70 text-lg">Exchange your hard-earned coins for exclusive perks and swags.</p>
+                    <p className="text-ice/70 text-sm sm:text-lg">Exchange your hard-earned coins for exclusive perks and swags.</p>
                 </div>
-                <div className="bg-surface/80 backdrop-blur-md px-6 py-4 rounded-2xl border border-border shadow-md flex items-center gap-4">
+                <div className="bg-surface/80 backdrop-blur-md px-4 sm:px-6 py-3 sm:py-4 rounded-2xl border border-border shadow-md flex items-center gap-3 sm:gap-4 self-start sm:self-auto">
                     <div className="flex flex-col">
                         <span className="text-ice/50 text-xs uppercase tracking-wider font-bold mb-0.5">Your Balance</span>
-                        <span className="text-2xl font-bold text-white flex items-center gap-2 leading-none">
+                        <span className="text-xl sm:text-2xl font-bold text-white flex items-center gap-1.5 sm:gap-2 leading-none">
                             <span className="text-yellow-500 drop-shadow-[0_0_8px_rgba(234,179,8,0.4)]">🪙</span> {user?.coins || 0}
                         </span>
                     </div>
@@ -288,7 +288,7 @@ const Store = () => {
             </div>
 
             {/* Product Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
                 {PRODUCTS.map(product => (
                     <StoreItem 
                         key={product.id}

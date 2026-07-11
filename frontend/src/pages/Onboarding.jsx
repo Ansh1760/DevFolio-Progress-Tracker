@@ -133,7 +133,7 @@ const Onboarding = () => {
                                         placeholder="e.g. IIT Delhi"
                                         className="w-full bg-navy-light/40 border border-border/50 rounded-lg px-4 py-2.5 text-white placeholder-ice/30 focus:outline-none focus:ring-2 focus:ring-sky/50" />
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
                                         <label className="text-sm font-medium text-ice/80 mb-1 flex items-center gap-2"><BookOpen className="w-4 h-4"/> Branch</label>
                                         <input type="text" name="branch" value={formData.branch} onChange={handleChange} required

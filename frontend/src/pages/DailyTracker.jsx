@@ -73,11 +73,11 @@ const DailyTracker = () => {
 
     return (
         <DashboardLayout>
-            <div className="mb-8">
-                <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
-                    <Target className="w-6 h-6 text-primary" /> Daily Tracker
+            <div className="mb-6">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-1 flex items-center gap-2">
+                    <Target className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0" /> Daily Tracker
                 </h2>
-                <p className="text-ice/70">Set your daily goals, track your progress, and take learning notes.</p>
+                <p className="text-ice/70 text-sm">Set your daily goals, track your progress, and take learning notes.</p>
             </div>
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
@@ -90,15 +90,15 @@ const DailyTracker = () => {
                         </span>
                     </div>
 
-                    <form onSubmit={addGoal} className="mb-6 flex gap-2">
+                    <form onSubmit={addGoal} className="mb-5 flex gap-2">
                         <input 
                             type="text" 
                             value={newGoal}
                             onChange={(e) => setNewGoal(e.target.value)}
                             placeholder="Add a new goal for today..." 
-                            className="flex-1 bg-navy-light/40 border border-border/50 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky/50 transition-colors"
+                            className="flex-1 input-field min-w-0"
                         />
-                        <button type="submit" className="bg-primary hover:bg-primary/90 text-white px-4 py-2.5 rounded-lg font-medium transition-colors shadow-lg shadow-primary/20">
+                        <button type="submit" className="btn-primary px-3 sm:px-4 flex-shrink-0">
                             Add
                         </button>
                     </form>
@@ -142,7 +142,7 @@ const DailyTracker = () => {
                     <textarea 
                         value={notes}
                         onChange={(e) => setNotes(e.target.value)}
-                        className="flex-1 w-full bg-navy-light/20 border border-border/30 rounded-xl p-4 text-ice/90 leading-relaxed focus:outline-none focus:border-sky/50 transition-colors resize-none min-h-[300px]"
+                        className="flex-1 w-full bg-navy-light/20 border border-border/30 rounded-xl p-4 text-ice/90 leading-relaxed focus:outline-none focus:border-sky/50 transition-colors resize-none min-h-[200px] sm:min-h-[300px]"
                         placeholder="Write down what you learned today, algorithms you discovered, or concepts you need to revise..."
                     />
                 </div>

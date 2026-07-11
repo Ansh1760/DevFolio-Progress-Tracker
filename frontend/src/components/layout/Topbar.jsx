@@ -132,8 +132,8 @@ const Topbar = ({ toggleSidebar }) => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                                 transition={{ duration: 0.15 }}
-                                className="absolute right-0 mt-3 w-[calc(100vw-1rem)] sm:w-80 max-w-[340px] bg-surface border border-border rounded-2xl shadow-xl overflow-hidden z-50 origin-top-right"
-                                style={{ maxHeight: 'calc(100vh - 120px)' }}
+                                className="fixed top-16 left-2 right-2 mt-2 sm:absolute sm:top-auto sm:left-auto sm:right-0 sm:mt-3 w-auto sm:w-80 sm:max-w-[340px] bg-surface border border-border rounded-2xl shadow-xl overflow-hidden z-50 origin-top sm:origin-top-right"
+                                style={{ maxHeight: 'calc(100vh - 80px)' }}
                             >
                                 <div className="p-4 border-b border-border flex items-center justify-between bg-surface/50">
                                     <h3 className="font-bold text-foreground">Notifications</h3>

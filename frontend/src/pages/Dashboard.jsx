@@ -104,16 +104,16 @@ const Dashboard = () => {
     return (
         <DashboardLayout>
 
-            <div className="mb-5 sm:mb-8">
-                <h2 className="text-lg sm:text-2xl font-bold text-white mb-1 sm:mb-2 flex items-center gap-2 flex-wrap">
-                    Welcome back,{' '}
-                    <span className={user?.usernameColor ? "font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 tracking-tight drop-shadow-sm" : ""}>
+            <div className="mb-6 sm:mb-8">
+                <p className="text-ice/70 text-sm sm:text-base font-medium mb-1">Welcome back,</p>
+                <h2 className="text-2xl sm:text-3xl font-bold flex items-center gap-2 sm:gap-3 flex-wrap leading-tight">
+                    <span className={user?.usernameColor ? "font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 tracking-tight drop-shadow-sm" : "text-white drop-shadow-sm"}>
                         {user?.fullName || 'Coder'}
-                    </span>! 
-                    <ProfileBadge badgeType={user?.profileBadge} className="w-6 h-6 shrink-0" />
-                    👋
+                    </span>
+                    <ProfileBadge badgeType={user?.profileBadge} className="w-6 h-6 sm:w-8 sm:h-8 shrink-0" />
+                    <span className="text-2xl sm:text-3xl origin-bottom-right hover:rotate-12 transition-transform cursor-default">👋</span>
                 </h2>
-                <p className="text-ice/70 text-sm">Here's a summary of your coding progress.</p>
+                <p className="text-ice/50 text-xs sm:text-sm mt-2 font-medium tracking-wide">Here's a summary of your coding progress.</p>
             </div>
 
             <StatsOverview stats={{

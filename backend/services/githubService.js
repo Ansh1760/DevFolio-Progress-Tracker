@@ -3,29 +3,19 @@ const fetchFn = typeof fetch !== 'undefined' ? fetch : (...args) => import('node
 exports.getGitHubStats = async (username) => {
     if (!username) return null;
     try {
-        const response = await fetchFn(`https://api.github.com/users/${username}`);
+        const response = await fetchFn(`https://api.github.com/users/${username}`, {
+            headers: { 'User-Agent': 'DevFolio-App' }
+        });
+        
         if (!response.ok) {
             console.error(`GitHub API returned ${response.status} for ${username}`);
             return { error: true, message: 'Unable to fetch data.' };
         }
+        
         const data = await response.json();
 
-        // Fetch repos as requested
-        let repoCount = data.public_repos;
-        try {
-            const reposResponse = await fetchFn(`https://api.github.com/users/${username}/repos`);
-            if (reposResponse.ok) {
-                const reposData = await reposResponse.json();
-                if (Array.isArray(reposData)) {
-                    repoCount = reposData.length;
-                }
-            }
-        } catch (e) {
-            console.error('Error fetching repos from GitHub:', e);
-        }
-        
         return {
-            publicRepos: repoCount,
+            publicRepos: data.public_repos,
             followers: data.followers,
             following: data.following,
             avatarUrl: data.avatar_url,

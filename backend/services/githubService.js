@@ -5,12 +5,13 @@ exports.getGitHubStats = async (username) => {
     try {
         const headers = { 'User-Agent': 'DevFolio-App' };
         if (process.env.GITHUB_TOKEN) {
-            headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
+            headers['Authorization'] = `Bearer ${process.env.GITHUB_TOKEN}`;
         }
         const response = await fetchFn(`https://api.github.com/users/${username}`, { headers });
         
         if (!response.ok) {
-            console.error(`GitHub API returned ${response.status} for ${username}`);
+            const errorText = await response.text();
+            console.error(`GitHub API returned ${response.status} for ${username}: ${errorText}`);
             return { error: true, message: 'Unable to fetch data.' };
         }
         

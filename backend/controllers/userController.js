@@ -123,7 +123,7 @@ exports.getDashboardData = async (req, res) => {
                     coins: user.coins,
                     starsCount: user.starsReceived?.length || 0
                 },
-                leetcode: (() => { console.log('Returning leetcode in getDashboard:', leetcode); return leetcode; })(),
+                leetcode,
                 gfg,
                 github,
                 codeforces,

@@ -3,9 +3,11 @@ const fetchFn = typeof fetch !== 'undefined' ? fetch : (...args) => import('node
 exports.getGitHubStats = async (username) => {
     if (!username) return null;
     try {
-        const response = await fetchFn(`https://api.github.com/users/${username}`, {
-            headers: { 'User-Agent': 'DevFolio-App' }
-        });
+        const headers = { 'User-Agent': 'DevFolio-App' };
+        if (process.env.GITHUB_TOKEN) {
+            headers['Authorization'] = `token ${process.env.GITHUB_TOKEN}`;
+        }
+        const response = await fetchFn(`https://api.github.com/users/${username}`, { headers });
         
         if (!response.ok) {
             console.error(`GitHub API returned ${response.status} for ${username}`);
